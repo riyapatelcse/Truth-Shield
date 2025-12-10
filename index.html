@@ -8,6 +8,23 @@
 </head>
 <body>
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Get the link element
+    var link = document.getElementById("viewReportsLink");
+
+  
+    if(link) link.style.display = "none";
+
+  
+    var password = prompt("Enter admin password to view reports:");
+    if(password === "welcomebhai"){
+        if(link) link.style.display = "inline"; 
+    }
+});
+</script>
+
+
 <!-- NAVBAR -->
 <header class="navbar">
 <div class="nav-logo">
@@ -23,6 +40,8 @@
 <a href="report.html">Report</a>
 <a href="admin.html">View Reports</a>
 <a href="info.html">Safety & About</a>
+<a href="report.html">View Reports</a>
+
 </nav>
 
 <div class="nav-icons">
@@ -51,6 +70,8 @@ Your smart assistant for detecting fake profiles, scam messages, fraudulent news
 <a href="message.html" class="hero-btn">Fraud Message Check</a>
 <a href="news.html" class="hero-btn">Fake News Detector</a>
 <a href="report.html" class="hero-btn">Report Scam</a>
+<a href="report.html" id="viewReportsLink">View Reports</a>
+
 </div>
 </div>
 </section>
