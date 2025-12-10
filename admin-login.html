@@ -47,9 +47,13 @@ cursor: pointer;
 function check() {
 let pass = document.getElementById("pwd").value;
 
-// CHANGE YOUR PASSWORD HERE
+// YOUR PASSWORD HERE
 if (pass === "welcomeriya") {
-window.location.href = "viewReports.html";
+// admin logged in
+localStorage.setItem("adminLoggedIn", "true");
+
+// go to view reports page (THIS is correct)
+window.location.href = "admin.html";
 } else {
 alert("Incorrect password!");
 }
