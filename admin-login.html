@@ -9,11 +9,12 @@
 <body>
 
 <script>
-  // Ask password when user tries to access this page
-  let password = prompt("Enter admin password to view reports:");
-  if(password !== "welcomeriya") {
-    alert("Wrong password! Access denied.");
-    window.location.href = "index.html";
+  window.onload = function() {
+    const password = prompt("Enter admin password to view reports:");
+    if(password !== "welcomeriya") { // Replace with your password
+      alert("Wrong password! Access denied.");
+      window.location.href = "index.html"; // redirect if wrong
+    }
   }
 </script>
 
