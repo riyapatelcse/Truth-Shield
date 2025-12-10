@@ -3,20 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Report Fraud - Truth Shield</title>
+<title>Truth Shield</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
 <script>
-  // Ask for admin password
-  var password = prompt("Enter admin password to view reports:");
+document.addEventListener("DOMContentLoaded", function() {
+    // Get the link element
+    var link = document.getElementById("viewReportsLink");
+
   
-  // Change "1234" to any password you like
-  if(password !== "welcomebhai"){
-      // Wrong password → redirect to homepage
-      alert("Wrong password! Redirecting...");
-      window.location.href = "index.html";
-  }
+    if(link) link.style.display = "none";
+
+  
+    var password = prompt("Enter admin password to view reports:");
+    if(password === "welcomebhai"){
+        if(link) link.style.display = "inline"; 
+    }
+});
 </script>
 
 
@@ -26,6 +31,7 @@
 <img src="images/logo.png" alt="Truth Shield Logo">
 <span>Truth Shield</span>
 </div>
+
 <nav class="nav-links" id="navLinks">
 <a href="index.html">Home</a>
 <a href="profile.html">Fake Profile</a>
@@ -34,7 +40,10 @@
 <a href="report.html">Report</a>
 <a href="admin.html">View Reports</a>
 <a href="info.html">Safety & About</a>
+<a href="report.html">View Reports</a>
+
 </nav>
+
 <div class="nav-icons">
 <button id="darkToggle">🌙</button>
 <div class="hamburger" onclick="toggleMenu()">
@@ -45,25 +54,26 @@
 </div>
 </header>
 
-<!-- ===== REPORT FORM ===== -->
-<section class="detector-section">
-<h2>Submit a Fraud Report</h2>
-<p>Help us improve online safety by reporting suspicious activity:</p>
+<!-- ===== HERO SECTION ===== -->
+<section class="hero">
+<div class="hero-content">
+<img src="images/logo.png" class="hero-logo">
 
-<form id="reportForm">
-<input type="text" id="rName" placeholder="Your Name" required>
-<input type="email" id="rEmail" placeholder="Your Email" required>
-<select id="rType" required>
-<option value="">Select Issue Type</option>
-<option value="Fake Profile">Fake Profile</option>
-<option value="Fraud Message">Fraud Message</option>
-<option value="Fake News">Fake News</option>
-</select>
-<textarea id="rDescription" placeholder="Describe the issue..." rows="5" required></textarea>
-<button type="submit">Submit Report</button>
-</form>
+<h1 class="hero-title">Truth Shield</h1>
+<p class="hero-text">
+Your smart assistant for detecting fake profiles, scam messages, fraudulent news
+& keeping you safe online.
+</p>
 
-<div id="reportResult"></div>
+<div class="hero-buttons">
+<a href="profile.html" class="hero-btn">Fake Profile Detector</a>
+<a href="message.html" class="hero-btn">Fraud Message Check</a>
+<a href="news.html" class="hero-btn">Fake News Detector</a>
+<a href="report.html" class="hero-btn">Report Scam</a>
+<a href="report.html" id="viewReportsLink">View Reports</a>
+
+</div>
+</div>
 </section>
 
 <!-- FOOTER -->
@@ -72,29 +82,5 @@
 </footer>
 
 <script src="js/main.js"></script>
-<script>
-const reportForm = document.getElementById("reportForm");
-const reportResult = document.getElementById("reportResult");
-
-reportForm.addEventListener("submit", function(e){
-e.preventDefault();
-
-const report = {
-name: document.getElementById("rName").value,
-email: document.getElementById("rEmail").value,
-type: document.getElementById("rType").value,
-description: document.getElementById("rDescription").value
-};
-
-let reports = JSON.parse(localStorage.getItem("reports")) || [];
-reports.push(report);
-localStorage.setItem("reports", JSON.stringify(reports));
-
-alert("Report submitted successfully ✅");
-reportResult.innerHTML = "<p>Report saved locally. Thank you!</p>";
-
-reportForm.reset();
-});
-</script>
 </body>
 </html>
