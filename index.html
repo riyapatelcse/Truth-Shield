@@ -8,77 +8,78 @@
 </head>
 <body>
 
-<!-- Admin login script -->
-<script>
-document.getElementById("adminLogin").addEventListener("click", function() {
-    var password = prompt("Enter admin password:");
-    if(password === "welcomeriya"){ 
-        document.getElementById("viewReportsLink").style.display = "inline";
-        alert("Admin login successful!");
-    } else {
-        alert("Wrong password!");
-    }
-});
-</script>
-
-
 <!-- NAVBAR -->
 <header class="navbar">
-<div class="nav-logo">
-<img src="images/logo.png" alt="Truth Shield Logo">
-<span>Truth Shield</span>
-</div>
+  <div class="nav-logo">
+    <img src="images/logo.png" alt="Truth Shield Logo">
+    <span>Truth Shield</span>
+  </div>
 
-<nav class="nav-links" id="navLinks">
-<a href="index.html">Home</a>
-<a href="profile.html">Fake Profile</a>
-<a href="message.html">Fraud Message</a>
-<a href="news.html">Fake News</a>
-<a href="report.html">Report</a>
-<a href="admin.html">View Reports</a>
-<a href="info.html">Safety & About</a>
-<a href="report.html">View Reports</a>
+  <nav class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="profile.html">Fake Profile</a>
+    <a href="message.html">Fraud Message</a>
+    <a href="news.html">Fake News</a>
+    <a href="report.html">Report</a> <!-- Open for all -->
+    <a href="view-report.html" id="viewReportsLink" style="display:none;">View Report</a> <!-- Admin-only -->
+    <a href="info.html">Safety & About</a>
+  </nav>
 
-</nav>
-
-<div class="nav-icons">
-<button id="darkToggle">🌙</button>
-<div class="hamburger" onclick="toggleMenu()">
-<span></span>
-<span></span>
-<span></span>
-</div>
-</div>
+  <div class="nav-icons">
+    <button id="darkToggle">🌙</button>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
 </header>
 
 <!-- ===== HERO SECTION ===== -->
 <section class="hero">
-<div class="hero-content">
-<img src="images/logo.png" class="hero-logo">
+  <div class="hero-content">
+    <img src="images/logo.png" class="hero-logo">
 
-<h1 class="hero-title">Truth Shield</h1>
-<p class="hero-text">
-Your smart assistant for detecting fake profiles, scam messages, fraudulent news
-& keeping you safe online.
-</p>
+    <h1 class="hero-title">Truth Shield</h1>
+    <p class="hero-text">
+      Your smart assistant for detecting fake profiles, scam messages, fraudulent news
+      & keeping you safe online.
+    </p>
 
-<div class="hero-buttons">
-  <a href="profile.html" class="hero-btn">Fake Profile Detector</a>
-  <a href="message.html" class="hero-btn">Fraud Message Check</a>
-  <a href="news.html" class="hero-btn">Fake News Detector</a>
-  <a href="report.html" class="hero-btn">Report Scam</a>
-  <a href="report.html" id="viewReportsLink" style="display:none;">View Reports</a>
-  
-  <!-- Admin Login button -->
-  <button id="adminLogin" class="hero-btn">Admin Login</button>
-</div>
+    <div class="hero-buttons">
+      <a href="profile.html" class="hero-btn">Fake Profile Detector</a>
+      <a href="message.html" class="hero-btn">Fraud Message Check</a>
+      <a href="news.html" class="hero-btn">Fake News Detector</a>
+      <a href="report.html" class="hero-btn">Report Scam</a> <!-- Open for all -->
 
+      <!-- Admin Login button -->
+      <button id="adminLogin" class="hero-btn">Admin Login</button>
+    </div>
+  </div>
 </section>
 
 <!-- FOOTER -->
 <footer class="footer">
-<p>© 2025 Truth Shield — Stay Aware. Stay Safe.</p>
+  <p>© 2025 Truth Shield — Stay Aware. Stay Safe.</p>
 </footer>
+
+<!-- Admin Login Script -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var adminBtn = document.getElementById("adminLogin");
+  var viewReports = document.getElementById("viewReportsLink");
+
+  adminBtn.addEventListener("click", function() {
+    var password = prompt("Enter admin password:");
+    if(password === "welcomeriya"){ // Replace with your password
+      viewReports.style.display = "inline"; // Show admin link in navbar
+      alert("Admin login successful!");
+    } else {
+      alert("Wrong password! Access denied.");
+    }
+  });
+});
+</script>
 
 <script src="js/main.js"></script>
 </body>
