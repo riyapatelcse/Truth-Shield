@@ -7,6 +7,18 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<script>
+  // Ask for admin password
+  var password = prompt("Enter admin password to view reports:");
+  
+  // Change "1234" to any password you like
+  if(password !== "welcomebhai"){
+      // Wrong password → redirect to homepage
+      alert("Wrong password! Redirecting...");
+      window.location.href = "index.html";
+  }
+</script>
+
 
 <!-- NAVBAR -->
 <header class="navbar">
