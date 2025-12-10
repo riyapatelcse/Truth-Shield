@@ -1,62 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Admin Login | Truth Shield</title>
-<style>
-body {
-font-family: Arial;
-background: #111;
-color: white;
-text-align: center;
-padding-top: 100px;
-}
-.box {
-width: 320px;
-margin: auto;
-background: #222;
-padding: 25px;
-border-radius: 10px;
-}
-input {
-width: 90%;
-padding: 10px;
-margin: 10px;
-border-radius: 5px;
-border: none;
-}
-button {
-padding: 10px 25px;
-background: #ff5252;
-border: none;
-border-radius: 5px;
-color: white;
-cursor: pointer;
-}
-</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Report - Truth Shield</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<div class="box">
-<h2>Admin Login</h2>
-<input type="password" id="pwd" placeholder="Enter admin password">
-<br>
-<button onclick="check()">Login</button>
-</div>
+<script>
+  // Ask password when user tries to access this page
+  let password = prompt("Enter admin password to view reports:");
+  if(password !== "welcomeriya") {
+    alert("Wrong password! Access denied.");
+    window.location.href = "index.html";
+  }
+</script>
+
+<header class="navbar">
+  <div class="nav-logo">
+    <img src="images/logo.png" alt="Truth Shield Logo">
+    <span>Truth Shield</span>
+  </div>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="profile.html">Fake Profile</a>
+    <a href="message.html">Fraud Message</a>
+    <a href="news.html">Fake News</a>
+    <a href="report.html">Report</a>
+    <a href="info.html">Safety & About</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>View Report</h1>
+    <p>Only admins can see submitted reports:</p>
+    <div class="reports" id="reportsContainer"></div>
+  </div>
+</section>
+
+<footer class="footer">
+<p>© 2025 Truth Shield — Stay Aware. Stay Safe.</p>
+</footer>
 
 <script>
-function check() {
-let pass = document.getElementById("pwd").value;
+const reportsContainer = document.getElementById("reportsContainer");
+let reports = JSON.parse(localStorage.getItem("reports")) || [];
 
-// YOUR PASSWORD HERE
-if (pass === "welcomeriya") {
-// admin logged in
-localStorage.setItem("adminLoggedIn", "true");
-
-// go to view reports page (THIS is correct)
-window.location.href = "admin.html";
+if(reports.length === 0){
+  reportsContainer.innerHTML = "<p>No reports yet.</p>";
 } else {
-alert("Incorrect password!");
-}
+  reports.forEach((r,i) => {
+    const div = document.createElement("div");
+    div.innerHTML = `<h3>Report ${i+1}</h3>
+                     <p><b>Name:</b> ${r.name}</p>
+                     <p><b>Email:</b> ${r.email}</p>
+                     <p><b>Type:</b> ${r.type}</p>
+                     <p><b>Description:</b> ${r.description}</p><hr>`;
+    reportsContainer.appendChild(div);
+  });
 }
 </script>
 
