@@ -8,18 +8,15 @@
 </head>
 <body>
 
+<!-- Admin login script -->
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    // Get the link element
-    var link = document.getElementById("viewReportsLink");
-
-  
-    if(link) link.style.display = "none";
-
-  
-    var password = prompt("Enter admin password to view reports:");
-    if(password === "welcomebhai"){
-        if(link) link.style.display = "inline"; 
+document.getElementById("adminLogin").addEventListener("click", function() {
+    var password = prompt("Enter admin password:");
+    if(password === "welcomeriya"){ 
+        document.getElementById("viewReportsLink").style.display = "inline";
+        alert("Admin login successful!");
+    } else {
+        alert("Wrong password!");
     }
 });
 </script>
@@ -66,14 +63,16 @@ Your smart assistant for detecting fake profiles, scam messages, fraudulent news
 </p>
 
 <div class="hero-buttons">
-<a href="profile.html" class="hero-btn">Fake Profile Detector</a>
-<a href="message.html" class="hero-btn">Fraud Message Check</a>
-<a href="news.html" class="hero-btn">Fake News Detector</a>
-<a href="report.html" class="hero-btn">Report Scam</a>
-<a href="report.html" id="viewReportsLink">View Reports</a>
+  <a href="profile.html" class="hero-btn">Fake Profile Detector</a>
+  <a href="message.html" class="hero-btn">Fraud Message Check</a>
+  <a href="news.html" class="hero-btn">Fake News Detector</a>
+  <a href="report.html" class="hero-btn">Report Scam</a>
+  <a href="report.html" id="viewReportsLink" style="display:none;">View Reports</a>
+  
+  <!-- Admin Login button -->
+  <button id="adminLogin" class="hero-btn">Admin Login</button>
+</div>
 
-</div>
-</div>
 </section>
 
 <!-- FOOTER -->
