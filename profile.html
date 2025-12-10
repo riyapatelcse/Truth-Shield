@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fake Profile Detector - Truth Shield</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+<div class="nav-logo">
+<img src="images/logo.png" alt="Truth Shield Logo">
+<span>Truth Shield</span>
+</div>
+
+<nav class="nav-links" id="navLinks">
+<a href="index.html">Home</a>
+<a href="profile.html">Fake Profile</a>
+<a href="message.html">Fraud Message</a>
+<a href="news.html">Fake News</a>
+<a href="report.html">Report</a>
+<a href="admin.html">View Reports</a>
+<a href="info.html">Safety & About</a>
+</nav>
+
+<div class="nav-icons">
+<button id="darkToggle">🌙</button>
+<div class="hamburger" onclick="toggleMenu()">
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+</header>
+
+<!-- ===== FAKE PROFILE DETECTOR ===== -->
+<section class="detector-section">
+<h2>Fake Profile Detector</h2>
+<p>Enter the profile details to check if it looks suspicious:</p>
+
+<form id="profileForm">
+<input type="text" id="username" placeholder="Username" required>
+<input type="number" id="followers" placeholder="Number of Followers" required>
+<input type="number" id="following" placeholder="Number Following" required>
+<input type="number" id="posts" placeholder="Number of Posts" required>
+<input type="text" id="bio" placeholder="Bio text" required>
+
+<button type="submit">Check Profile</button>
+</form>
+
+<div id="profileResult"></div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+<p>© 2025 Truth Shield — Stay Aware. Stay Safe.</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+const profileForm = document.getElementById("profileForm");
+const profileResult = document.getElementById("profileResult");
+
+profileForm.addEventListener("submit", function(e){
+e.preventDefault();
+
+let score = 0;
+const username = document.getElementById("username").value;
+const followers = parseInt(document.getElementById("followers").value);
+const following = parseInt(document.getElementById("following").value);
+const posts = parseInt(document.getElementById("posts").value);
+const bio = document.getElementById("bio").value.trim();
+
+// Simple scoring logic
+if(bio.length < 10) score += 25;
+if(posts < 5) score += 25;
+if(followers < 10) score += 25;
+if(following > followers*10) score += 25;
+
+let message = "";
+if(score === 0) message = "Profile looks genuine ✅";
+else if(score <= 50) message = "Profile seems suspicious ⚠️";
+else message = "Profile is likely fake ❌";
+
+alert(message);
+profileResult.innerHTML = `<p>${message}</p><p>Risk Score: ${score}%</p>`;
+});
+</script>
+</body>
+</html>

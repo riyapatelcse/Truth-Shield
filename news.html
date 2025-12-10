@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fake News Detector - Truth Shield</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+<div class="nav-logo">
+<img src="images/logo.png" alt="Truth Shield Logo">
+<span>Truth Shield</span>
+</div>
+<nav class="nav-links" id="navLinks">
+<a href="index.html">Home</a>
+<a href="profile.html">Fake Profile</a>
+<a href="message.html">Fraud Message</a>
+<a href="news.html">Fake News</a>
+<a href="report.html">Report</a>
+<a href="admin.html">View Reports</a>
+<a href="info.html">Safety & About</a>
+</nav>
+<div class="nav-icons">
+<button id="darkToggle">🌙</button>
+<div class="hamburger" onclick="toggleMenu()">
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+</header>
+
+<!-- ===== FAKE NEWS DETECTOR ===== -->
+<section class="detector-section">
+<h2>Fake News Detector</h2>
+<p>Paste the headline or news text below to check for suspicious signs:</p>
+
+<form id="newsForm">
+<textarea id="newsText" placeholder="Enter news..." rows="6" required></textarea>
+<button type="submit">Check News</button>
+</form>
+
+<div id="newsResult"></div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+<p>© 2025 Truth Shield — Stay Aware. Stay Safe.</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+const newsForm = document.getElementById("newsForm");
+const newsResult = document.getElementById("newsResult");
+
+newsForm.addEventListener("submit", function(e){
+e.preventDefault();
+const text = document.getElementById("newsText").value.toLowerCase();
+let score = 0;
+
+const clickbaitWords = ["shocking","unbelievable","you won't believe","secret","amazing","exclusive","alert"];
+clickbaitWords.forEach(word => {
+if(text.includes(word)) score += 20;
+});
+
+if(text.length < 50) score += 10; // very short news suspicious
+if(!text.includes("source") && !text.includes("https")) score += 20;
+
+let message = "";
+if(score === 0) message = "News looks credible ✅";
+else if(score <= 50) message = "News seems suspicious ⚠️";
+else message = "News is likely fake ❌";
+
+alert(message);
+newsResult.innerHTML = `<p>${message}</p><p>Risk Score: ${score}%</p>`;
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Reports - Truth Shield</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+<div class="nav-logo">
+<img src="images/logo.png" alt="Truth Shield Logo">
+<span>Truth Shield</span>
+</div>
+<nav class="nav-links" id="navLinks">
+<a href="index.html">Home</a>
+<a href="profile.html">Fake Profile</a>
+<a href="message.html">Fraud Message</a>
+<a href="news.html">Fake News</a>
+<a href="report.html">Report</a>
+<a href="admin.html">View Reports</a>
+<a href="info.html">Safety & About</a>
+</nav>
+<div class="nav-icons">
+<button id="darkToggle">🌙</button>
+<div class="hamburger" onclick="toggleMenu()">
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+</header>
+
+<!-- ===== VIEW REPORTS ===== -->
+<section class="detector-section">
+<h2>Submitted Reports</h2>
+<table id="reportsTable">
+<thead>
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Type</th>
+<th>Description</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<!-- Reports will load here -->
+</tbody>
+</table>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+<p>© 2025 Truth Shield — Stay Aware. Stay Safe.</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+function loadReports(){
+const reports = JSON.parse(localStorage.getItem("reports")) || [];
+const tbody = document.querySelector("#reportsTable tbody");
+tbody.innerHTML = "";
+
+reports.forEach((r, index) => {
+const tr = document.createElement("tr");
+tr.innerHTML = `
+<td>${r.name}</td>
+<td>${r.email}</td>
+<td>${r.type}</td>
+<td>${r.description}</td>
+<td><button onclick="deleteReport(${index})">Delete</button></td>
+`;
+tbody.appendChild(tr);
+});
+}
+
+function deleteReport(index){
+let reports = JSON.parse(localStorage.getItem("reports")) || [];
+reports.splice(index, 1);
+localStorage.setItem("reports", JSON.stringify(reports));
+loadReports();
+}
+
+window.onload = loadReports;
+</script>
+</body>
+</html>

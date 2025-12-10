@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fraud Message Detector - Truth Shield</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- NAVBAR (same as above) -->
+<header class="navbar">
+<div class="nav-logo">
+<img src="images/logo.png" alt="Truth Shield Logo">
+<span>Truth Shield</span>
+</div>
+<nav class="nav-links" id="navLinks">
+<a href="index.html">Home</a>
+<a href="profile.html">Fake Profile</a>
+<a href="message.html">Fraud Message</a>
+<a href="news.html">Fake News</a>
+<a href="report.html">Report</a>
+<a href="admin.html">View Reports</a>
+<a href="info.html">Safety & About</a>
+</nav>
+<div class="nav-icons">
+<button id="darkToggle">🌙</button>
+<div class="hamburger" onclick="toggleMenu()">
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+</header>
+
+<!-- ===== FRAUD MESSAGE DETECTOR ===== -->
+<section class="detector-section">
+<h2>Fraud Message Detector</h2>
+<p>Paste a message below to check if it might be a scam:</p>
+
+<form id="messageForm">
+<textarea id="msgText" placeholder="Enter message..." rows="6" required></textarea>
+<button type="submit">Check Message</button>
+</form>
+
+<div id="messageResult"></div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+<p>© 2025 Truth Shield — Stay Aware. Stay Safe.</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+const messageForm = document.getElementById("messageForm");
+const messageResult = document.getElementById("messageResult");
+
+messageForm.addEventListener("submit", function(e){
+e.preventDefault();
+const text = document.getElementById("msgText").value.toLowerCase();
+let score = 0;
+
+const keywords = ["congratulations","won","urgent","bank","click here","password","verify","account"];
+keywords.forEach(word => {
+if(text.includes(word)) score += 20;
+});
+
+let message = "";
+if(score === 0) message = "Message looks safe ✅";
+else if(score <= 40) message = "Message seems suspicious ⚠️";
+else message = "Message is likely fraudulent ❌";
+
+alert(message);
+messageResult.innerHTML = `<p>${message}</p><p>Risk Score: ${score}%</p>`;
+});
+</script>
+</body>
+</html>

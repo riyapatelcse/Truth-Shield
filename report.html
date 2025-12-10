@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Report Fraud - Truth Shield</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+<div class="nav-logo">
+<img src="images/logo.png" alt="Truth Shield Logo">
+<span>Truth Shield</span>
+</div>
+<nav class="nav-links" id="navLinks">
+<a href="index.html">Home</a>
+<a href="profile.html">Fake Profile</a>
+<a href="message.html">Fraud Message</a>
+<a href="news.html">Fake News</a>
+<a href="report.html">Report</a>
+<a href="admin.html">View Reports</a>
+<a href="info.html">Safety & About</a>
+</nav>
+<div class="nav-icons">
+<button id="darkToggle">🌙</button>
+<div class="hamburger" onclick="toggleMenu()">
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+</header>
+
+<!-- ===== REPORT FORM ===== -->
+<section class="detector-section">
+<h2>Submit a Fraud Report</h2>
+<p>Help us improve online safety by reporting suspicious activity:</p>
+
+<form id="reportForm">
+<input type="text" id="rName" placeholder="Your Name" required>
+<input type="email" id="rEmail" placeholder="Your Email" required>
+<select id="rType" required>
+<option value="">Select Issue Type</option>
+<option value="Fake Profile">Fake Profile</option>
+<option value="Fraud Message">Fraud Message</option>
+<option value="Fake News">Fake News</option>
+</select>
+<textarea id="rDescription" placeholder="Describe the issue..." rows="5" required></textarea>
+<button type="submit">Submit Report</button>
+</form>
+
+<div id="reportResult"></div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+<p>© 2025 Truth Shield — Stay Aware. Stay Safe.</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+const reportForm = document.getElementById("reportForm");
+const reportResult = document.getElementById("reportResult");
+
+reportForm.addEventListener("submit", function(e){
+e.preventDefault();
+
+const report = {
+name: document.getElementById("rName").value,
+email: document.getElementById("rEmail").value,
+type: document.getElementById("rType").value,
+description: document.getElementById("rDescription").value
+};
+
+let reports = JSON.parse(localStorage.getItem("reports")) || [];
+reports.push(report);
+localStorage.setItem("reports", JSON.stringify(reports));
+
+alert("Report submitted successfully ✅");
+reportResult.innerHTML = "<p>Report saved locally. Thank you!</p>";
+
+reportForm.reset();
+});
+</script>
+</body>
+</html>
