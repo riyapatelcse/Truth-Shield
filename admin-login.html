@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Login | Truth Shield</title>
+<style>
+body {
+font-family: Arial;
+background: #111;
+color: white;
+text-align: center;
+padding-top: 100px;
+}
+.box {
+width: 320px;
+margin: auto;
+background: #222;
+padding: 25px;
+border-radius: 10px;
+}
+input {
+width: 90%;
+padding: 10px;
+margin: 10px;
+border-radius: 5px;
+border: none;
+}
+button {
+padding: 10px 25px;
+background: #ff5252;
+border: none;
+border-radius: 5px;
+color: white;
+cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h2>Admin Login</h2>
+<input type="password" id="pwd" placeholder="Enter admin password">
+<br>
+<button onclick="check()">Login</button>
+</div>
+
+<script>
+function check() {
+let pass = document.getElementById("pwd").value;
+
+// CHANGE YOUR PASSWORD HERE
+if (pass === "TruthShield2025") {
+window.location.href = "viewReports.html";
+} else {
+alert("Incorrect password!");
+}
+}
+</script>
+
+</body>
+</html>
